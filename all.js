@@ -4,12 +4,12 @@ const productTitle = document.getElementById('title');
 const originPrice = document.getElementById('origin_price');
 const setPrice = document.getElementById('price');
 const addProduct = document.getElementById('addProduct');
-const clearAllProduct = document.getElementById('clearAll');
+const clearAllProducts = document.getElementById('clearAll');
 const productCount = document.getElementById('productCount');
 const productList = document.getElementById('productList');
 
 function addBtn(){
-    if(productTitle.value !== "" &&originPrice.value !=="" && setPrice.value !==""){
+    if(productTitle.value !== "" && originPrice.value !=="" && setPrice.value !==""){
         productData.push({
         title:productTitle.value.trim(),
         origin_price:originPrice.value,
@@ -17,16 +17,53 @@ function addBtn(){
         is_enabled:false
         })
     }
-
+    renderProduct(productData);
     productTitle.value ="";
     originPrice.value ="";
     setPrice.value ="";
 }
     addProduct.addEventListener('click',addBtn);
 
+function removeProduct(id){
+  let index = 0;
+  productData.forEach((item,key)=>{
+      if(id == item.id){
+        index = key;
+      }
+  })
+  productData.splice(index,1);
+  renderProduct(productData);
+}
+
+function productStatus(id){
+  productData.forEach((item) => {
+    if(id == item.id){
+      item.is_enabled =! item.is_enabled;
+    }
+  })
+  renderProduct(productData);
+}
+
+function clearAllProduct(e){
+  e.preventDefault();
+  productData = [];
+  renderProduct(productData);
+}
+clearAllProducts.addEventListener('click',clearAllProduct);
 
 
-    function renderProduct(data) {
+function doTask(e){
+  const act = e.target.dataset.action;
+  const id = e.target.dataset.id;
+  if(act === 'remove'){
+    removeProduct(id)
+   } else if(act === 'status'){
+    productStatus(id)
+  }
+}
+  productList.addEventListener('click',doTask);
+
+function renderProduct(data) {
         let str="";
         data.forEach((item)=>{
             str+=`<tr>
@@ -50,7 +87,8 @@ function addBtn(){
 
         })
         productList.innerHTML =str;
+        productCount.textContent = data.length;
         
     }
-
+    renderProduct(productData);
 
