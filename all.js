@@ -11,10 +11,11 @@ const productList = document.getElementById('productList');
 function addBtn(){
     if(productTitle.value !== "" && originPrice.value !=="" && setPrice.value !==""){
         productData.push({
+        id:Date.now(),
         title:productTitle.value.trim(),
         origin_price:originPrice.value,
         price:setPrice.value,
-        is_enabled:false
+        is_enabled:false,
         })
     }
     renderProduct(productData);
@@ -38,7 +39,7 @@ function removeProduct(id){
 function productStatus(id){
   productData.forEach((item) => {
     if(id == item.id){
-      item.is_enabled =! item.is_enabled;
+      item.is_enabled = !item.is_enabled;
     }
   })
   renderProduct(productData);
@@ -92,3 +93,7 @@ function renderProduct(data) {
     }
     renderProduct(productData);
 
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })

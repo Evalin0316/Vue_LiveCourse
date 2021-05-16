@@ -9,13 +9,13 @@
 </head>
 <body>
     <div class="container">
-        <div class="row py-3">
-          <div class="col-sm-4">
+        <div class="row py-3 text-primary">
+          <div class="col-sm-5">
             <div class="card">
               <div class="card-header">
                 新增產品
               </div>
-              <div class="card-body">
+              <div class="card-body bg-light text-dark">
                 <div class="form-group mb-2">
                   <label for="title">產品標題</label>
                   <input id="title" type="text" class="form-control" placeholder="請輸入產品標題">
@@ -41,7 +41,7 @@
             </div>
           </div>
         </div>
-        <button type="button" id="clearAll" class="btn btn-sm btn-danger">清除全部</button>
+        <button type="button" id="clearAll" class="btn btn-outline-danger" data-toggle="tooltip" data-placement="bottom" title="按下後將清除全部商品">清除全部</button>
         <table class="table mt-4">
           <thead>
             <tr>
@@ -66,5 +66,9 @@
         <p>目前有 <span id="productCount">0</span> 項產品</p>
       </div>
 </body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 <script src="/all.js"></script>
 </html>
